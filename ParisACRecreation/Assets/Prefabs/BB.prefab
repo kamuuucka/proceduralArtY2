@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3045609127969623894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,16 +44,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0442c133fe87f4256b58a29025a92cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundWalls: []
-  groundCorners: []
-  floorWalls: []
-  floorCorners: []
+  groundWalls:
+  - {fileID: 1549149250053424459, guid: f086b37e2cd03424ab7814eb10fde4b4, type: 3}
+  - {fileID: 4222509806291601053, guid: 32d854c92f3ac6c409f7db679cfff124, type: 3}
+  - {fileID: 3285729763089816814, guid: 9a10f267c34c61845b7becfc2ba360b8, type: 3}
+  - {fileID: 714080976927082296, guid: 2753b03a613ce324fb2e68810c5639bc, type: 3}
+  groundCorners:
+  - {fileID: 4241037594188295503, guid: bcdb389d49f789a4f867c51382a43092, type: 3}
+  floorWalls:
+  - {fileID: 1579331632110074386, guid: 005abec404e140b4da4388499696778f, type: 3}
+  - {fileID: 2495461407477807495, guid: 56030e674d21fb546ba1e1747f984484, type: 3}
+  - {fileID: 2591127715886270139, guid: af89f205feb0dcb4e81ebbfaf315d8c0, type: 3}
+  - {fileID: 5395997553750797313, guid: 97e81187d1581d14c9de68c764adc07b, type: 3}
+  - {fileID: 6707756817219949241, guid: bbb2744ca03d35c43b82059c09f8cb63, type: 3}
+  floorCorners:
+  - {fileID: 6523776804463650118, guid: e994f61d004122149ba333e1b94a09e4, type: 3}
   roofCorners:
-  - {fileID: 0}
+  - {fileID: 7448204797218774887, guid: e81d235cbf0330b4692d4a0c5cfc8714, type: 3}
   buildingRoofs:
-  - {fileID: 919132149155446097, guid: 5de9d08cd6368457d870568706f457e5, type: 3}
-  - {fileID: 919132149155446097, guid: 47c982a76bce94f16ac161cb773cf4cb, type: 3}
-  - {fileID: 919132149155446097, guid: 7adbcb39730424a5a81d5052a05e5154, type: 3}
+  - {fileID: 1373083115605275328, guid: a35a8914da712fa4a89f0895841b0bfb, type: 3}
+  - {fileID: 3165810466205224629, guid: 4dd9b14bfe978974882da958eab4f138, type: 3}
+  - {fileID: 6078048934314116263, guid: 40da4d4d7b2260b4cb21379e45f1dbe0, type: 3}
   roofType: 3
   length: 3
   width: 5

@@ -129,8 +129,7 @@ MonoBehaviour:
   GenerateAllMipmaps: 1
   OutputMaterial: {fileID: 2100000, guid: 0b297cdf8283cf74791ce74ac5692456, type: 2}
   DefaultPreset: " <sbspreset pkgurl=\"pkg://Stone_wall\" label=\"\" >\n  <presetinput
-    identifier=\"$outputsize\" uid=\"3285381068\" type=\"8\" value=\"10,10\" />\n
-    </sbspreset>\n"
+    identifier=\"$outputsize\" uid=\"3285381068\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
   MaterialShader: Universal Render Pipeline/Lit
   RenderTextures: 0
   OutputRemaped: 0
