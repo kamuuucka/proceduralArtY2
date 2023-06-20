@@ -114,7 +114,7 @@ MonoBehaviour:
       Index: 5
       Type: 8
       Channel: ambientOcclusion
-    OutputTexture: {fileID: 0}
+    OutputTexture: {fileID: 2800000, guid: 94473abc3d67357429e6ed180a6655fd, type: 3}
     sRGB: 0
     IsVirtual: 0
     IsAlphaAssignable: 1
