@@ -44,16 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0442c133fe87f4256b58a29025a92cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundWall: {fileID: 919132149155446097, guid: b2a30727f35f2411997ebacf69fa569d,
-    type: 3}
-  groundCorner: {fileID: 919132149155446097, guid: 98d0bbafc35ab4a4f9f80f14bedfaad5,
-    type: 3}
-  floorWall: {fileID: 919132149155446097, guid: 6e3e1dbf4c7cd48c08b5802b45a832da,
-    type: 3}
-  floorCorner: {fileID: 919132149155446097, guid: 8987c2b2a10d344378cab033ecc824db,
-    type: 3}
-  roofCorner: {fileID: 919132149155446097, guid: 9568a2b90fc0c488081f97585e4288a2,
-    type: 3}
+  groundWalls: []
+  groundCorners: []
+  floorWalls: []
+  floorCorners: []
+  roofCorners:
+  - {fileID: 0}
   buildingRoofs:
   - {fileID: 919132149155446097, guid: 5de9d08cd6368457d870568706f457e5, type: 3}
   - {fileID: 919132149155446097, guid: 47c982a76bce94f16ac161cb773cf4cb, type: 3}

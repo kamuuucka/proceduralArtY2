@@ -135,8 +135,8 @@ MonoBehaviour:
     />\n  <presetinput identifier=\"disorder\" uid=\"2160549708\" type=\"0\" value=\"0.397\"
     />\n  <presetinput identifier=\"opacitymult_1\" uid=\"2160552066\" type=\"0\"
     value=\"1\" />\n  <presetinput identifier=\"x_amount\" uid=\"2160563613\" type=\"4\"
-    value=\"50\" />\n  <presetinput identifier=\"y_amount\" uid=\"2160562483\" type=\"4\"
-    value=\"50\" />\n </sbspreset>\n"
+    value=\"64\" />\n  <presetinput identifier=\"y_amount\" uid=\"2160562483\" type=\"4\"
+    value=\"64\" />\n </sbspreset>\n"
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
   GenerateAllMipmaps: 1
@@ -262,7 +262,7 @@ MonoBehaviour:
           GuiDescription: Amount of tiles on the X axis.
           Type: 4
           WidgetType: 1
-        Data: 50
+        Data: 64
         NumericalDescription:
           DefaultValue: 6
           MinValue: 1
@@ -284,7 +284,7 @@ MonoBehaviour:
           GuiDescription: Amount of tiles on the Y axis.
           Type: 4
           WidgetType: 1
-        Data: 50
+        Data: 64
         NumericalDescription:
           DefaultValue: 7
           MinValue: 1
