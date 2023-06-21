@@ -447,4 +447,13 @@ public class BuildingBlocks : MonoBehaviour
             DestroyImmediate(child);
         }
     }
+
+    public void LoadChildren()
+    {
+        _children.Clear();
+        foreach (Transform child in transform)
+        {
+           _children.Add(child.gameObject);
+        }
+    }
 }

@@ -65,6 +65,11 @@ public class BuildingBlocksEditor : Editor
         {
             _building.Reset();
         }
+        
+        if (GUILayout.Button("Load Children"))
+        {
+            _building.LoadChildren();
+        }
 
         if (GUILayout.Button("Advanced settings"))
         {
