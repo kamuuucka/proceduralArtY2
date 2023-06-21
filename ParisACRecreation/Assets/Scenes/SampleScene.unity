@@ -444,6 +444,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3045609127969623896, guid: 3c5526f7d2fd146928a094ce99bbc7e7,
         type: 3}
+      propertyPath: selectedWallFloor
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045609127969623896, guid: 3c5526f7d2fd146928a094ce99bbc7e7,
+        type: 3}
+      propertyPath: selectedWallFFloor
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045609127969623896, guid: 3c5526f7d2fd146928a094ce99bbc7e7,
+        type: 3}
+      propertyPath: selectedWallGround
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045609127969623896, guid: 3c5526f7d2fd146928a094ce99bbc7e7,
+        type: 3}
       propertyPath: floorWalls.Array.size
       value: 5
       objectReference: {fileID: 0}

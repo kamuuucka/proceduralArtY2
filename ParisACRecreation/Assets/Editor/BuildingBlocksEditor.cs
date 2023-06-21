@@ -21,13 +21,11 @@ public class BuildingBlocksEditor : Editor
     private int _selectedRoof;
     
     private readonly List<string> _gWNamesList = new List<string>();
-    private readonly List<string> _fFNamesList = new List<string>();
     private readonly List<string> _rFNamesList = new List<string>();
     private readonly List<string> _rNamesList = new List<string>();
 
     private string[] _gWNames;
     private string[] _fFNames;
-    private string[] _rFNames;
     private string[] _rNames;
 
 
@@ -46,7 +44,6 @@ public class BuildingBlocksEditor : Editor
         }
         foreach (var child in _building.FloorWalls)
         {
-            _fFNamesList.Add(child.name);
             _rFNamesList.Add(child.name);
         }
         foreach (var child in _building.BuildingRoofs)
@@ -55,8 +52,7 @@ public class BuildingBlocksEditor : Editor
         }
 
         _gWNames = _gWNamesList.ToArray();
-        _fFNames = _fFNamesList.ToArray();
-        _rFNames = _rFNamesList.ToArray();
+        _fFNames = _rFNamesList.ToArray();
         _rNames = _rNamesList.ToArray();
 
         if (GUILayout.Button("Create"))
@@ -78,16 +74,19 @@ public class BuildingBlocksEditor : Editor
         if (_showAdvanced)
         {
             EditorGUI.indentLevel++;
-            
+            EditorGUILayout.HelpBox("If you see this message, you are setting up the assets on the floors manually.\n" +
+                                    "Click on the part of the building you want to set up and choose the asset from the list.", MessageType.Info);
             EditorGUILayout.BeginHorizontal();
             _setGroundWalls = EditorGUILayout.Toggle("Set Ground Walls", _setGroundWalls);
             _selectedWall = EditorGUILayout.Popup(_selectedWall, _gWNames);
             EditorGUILayout.EndHorizontal();
-            
-            EditorGUILayout.BeginHorizontal();
-            _setFirstFloor = EditorGUILayout.Toggle("Set 1st Floor", _setFirstFloor);
-            _selectedFloor = EditorGUILayout.Popup(_selectedFloor, _fFNames);
-            EditorGUILayout.EndHorizontal();
+            if (_building.Floors > 1)
+            {
+                EditorGUILayout.BeginHorizontal();
+                _setFirstFloor = EditorGUILayout.Toggle("Set 1st Floor", _setFirstFloor);
+                _selectedFloor = EditorGUILayout.Popup(_selectedFloor, _fFNames);
+                EditorGUILayout.EndHorizontal();
+            }
             
             if (_building.Floors > 2)
             {EditorGUILayout.BeginHorizontal();
@@ -119,6 +118,9 @@ public class BuildingBlocksEditor : Editor
         if (_showRegeneration)
         {
             EditorGUI.indentLevel++;
+            EditorGUILayout.HelpBox("If you see this message, you can regenerate parts of the building.\n" +
+                                    "Click on the button with the section you want to regenerate.", MessageType.Info);
+
             if (GUILayout.Button("Regenerate ground"))
             {
                 _building.RegeneratePart(0);

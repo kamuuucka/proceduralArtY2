@@ -19,8 +19,6 @@ public class BuildingBlocks : MonoBehaviour
     [Range(1, 10)] [SerializeField] private int floors;
 
     public int Floors => floors;
-    public bool AdvancedSettings => _advancedSettings;
-
     public List<GameObject> GroundWalls => groundWalls;
     public List<GameObject> GroundCorners => groundCorners;
     public List<GameObject> FloorWalls => floorWalls;
@@ -34,10 +32,10 @@ public class BuildingBlocks : MonoBehaviour
     private List<GameObject> _firstFloorCopy;
     private readonly Dictionary<GameObject, int> _wallsAndFloors = new Dictionary<GameObject, int>();
 
-    public GameObject selectedRoof;
-    public GameObject selectedWallGround;
-    public GameObject selectedWallFFloor;
-    public GameObject selectedWallFloor;
+    private GameObject _selectedRoof;
+    private GameObject _selectedWallGround;
+    private GameObject _selectedWallFFloor;
+    private GameObject _selectedWallFloor;
 
     public enum BlockType
     {
@@ -52,16 +50,16 @@ public class BuildingBlocks : MonoBehaviour
         switch (blockType)
         {
             case BlockType.GroundWall:
-                selectedWallGround = groundWalls[blockNumber];
+                _selectedWallGround = groundWalls[blockNumber];
                 break;
             case BlockType.FirstFloor:
-                selectedWallFFloor = _firstFloorCopy[blockNumber];
+                _selectedWallFFloor = _firstFloorCopy[blockNumber];
                 break;
             case BlockType.OtherFloors:
-                selectedWallFloor = floorWalls[blockNumber];
+                _selectedWallFloor = floorWalls[blockNumber];
                 break;
             case BlockType.Roof:
-                selectedRoof = buildingRoofs[blockNumber];
+                _selectedRoof = buildingRoofs[blockNumber];
                 break;
         }
     }
@@ -71,16 +69,16 @@ public class BuildingBlocks : MonoBehaviour
         switch (blockType)
         {
             case BlockType.GroundWall:
-                selectedWallGround = null;
+                _selectedWallGround = null;
                 break;
             case BlockType.FirstFloor:
-                selectedWallFFloor = null;
+                _selectedWallFFloor = null;
                 break;
             case BlockType.OtherFloors:
-                selectedWallFloor = null;
+                _selectedWallFloor = null;
                 break;
             case BlockType.Roof:
-                selectedRoof = null;
+                _selectedRoof = null;
                 break;
         }
     }
@@ -103,7 +101,7 @@ public class BuildingBlocks : MonoBehaviour
 
 
         //ROOFS
-        GenerateRoof(selectedRoof);
+        GenerateRoof(_selectedRoof);
 
         foreach (var child in _children)
         {
@@ -177,14 +175,14 @@ public class BuildingBlocks : MonoBehaviour
         {
             for (int j = 0; j < 2; j++)
             {
-                if (selectedRoof == null)
+                if (_selectedRoof == null)
                 {
                     randomRoof = Random.Range(0, buildingRoofs.Count);
                 
                 }
                 else
                 {
-                    randomRoof = buildingRoofs.IndexOf(selectedRoof);
+                    randomRoof = buildingRoofs.IndexOf(_selectedRoof);
                 }
                 GameObject roof = Instantiate(buildingRoofs[randomRoof], transform);
                 roof.name = $"Roof{i}{j}";
@@ -202,13 +200,13 @@ public class BuildingBlocks : MonoBehaviour
         {
             for (int j = 0; j < 2; j++)
             {
-                if (selectedRoof == null)
+                if (_selectedRoof == null)
                 {
                     randomRoof = Random.Range(0, buildingRoofs.Count);
                 
                 } else
                 {
-                    randomRoof = buildingRoofs.IndexOf(selectedRoof);
+                    randomRoof = buildingRoofs.IndexOf(_selectedRoof);
                 }
                 GameObject roof = Instantiate(buildingRoofs[randomRoof], transform);
                 roof.name = $"Roof{i}{j}";
@@ -258,13 +256,37 @@ public class BuildingBlocks : MonoBehaviour
             _wallsAndFloors.Add(corner,f+1);
         }
 
-        int randomFront = 0;
-        int randomBack = 0;
+        int randomFront;
+        int randomBack ;
         //FRONT AND BACK
         for (int i = 1; i <= length - 2; i++)
         {
-            randomFront = Random.Range(0, floorWalls.Count);
-            randomBack = Random.Range(0, floorWalls.Count);
+            if (f == 0)
+            {
+                if (_selectedWallFFloor == null)
+                {
+                    randomFront = Random.Range(0, floorWalls.Count);
+                    randomBack = Random.Range(0, floorWalls.Count);
+                }
+                else
+                {
+                    randomFront = floorWalls.IndexOf(_selectedWallFFloor);
+                    randomBack = floorWalls.IndexOf(_selectedWallFFloor);
+                }
+            }
+            else
+            {
+                if (_selectedWallFloor == null)
+                {
+                    randomFront = Random.Range(0, floorWalls.Count);
+                    randomBack = Random.Range(0, floorWalls.Count);
+                }
+                else
+                {
+                    randomFront = floorWalls.IndexOf(_selectedWallFloor);
+                    randomBack = floorWalls.IndexOf(_selectedWallFloor);
+                }
+            }
             GameObject frontWall = Instantiate(floorWalls[randomFront], transform);
             frontWall.name = $"Front{i}";
             frontWall.transform.position = new Vector3(_corners[0].x + 5 * i, _corners[0].y + 3.5f + 3 * f, _corners[0].z);
@@ -283,14 +305,38 @@ public class BuildingBlocks : MonoBehaviour
         //SIDE 
         for (int i = 1; i <= width - 2; i++)
         {
-            int randomRight = Random.Range(0, floorWalls.Count);
-            int randomLeft = Random.Range(0, floorWalls.Count);
-            GameObject rightWall = Instantiate(floorWalls[randomRight], transform);
+            if (f == 0)
+            {
+                if (_selectedWallFFloor == null)
+                {
+                    randomFront = Random.Range(0, floorWalls.Count);
+                    randomBack = Random.Range(0, floorWalls.Count);
+                }
+                else
+                {
+                    randomFront = floorWalls.IndexOf(_selectedWallFFloor);
+                    randomBack = floorWalls.IndexOf(_selectedWallFFloor);
+                }
+            }
+            else
+            {
+                if (_selectedWallFloor == null)
+                {
+                    randomFront = Random.Range(0, floorWalls.Count);
+                    randomBack = Random.Range(0, floorWalls.Count);
+                }
+                else
+                {
+                    randomFront = floorWalls.IndexOf(_selectedWallFloor);
+                    randomBack = floorWalls.IndexOf(_selectedWallFloor);
+                }
+            }
+            GameObject rightWall = Instantiate(floorWalls[randomFront], transform);
             rightWall.name = $"Right{i}";
             rightWall.transform.position = new Vector3(_corners[1].x, _corners[0].y + 3.5f + 3 * f, _corners[1].z + 5 * i);
             rightWall.transform.Rotate(Vector3.up, -90);
 
-            GameObject leftWall = Instantiate(floorWalls[randomLeft], transform);
+            GameObject leftWall = Instantiate(floorWalls[randomBack], transform);
             leftWall.name = $"Left{i}";
             leftWall.transform.position = new Vector3(_corners[0].x, _corners[0].y + 3.5f + 3 * f, _corners[0].z + 5 * i);
             leftWall.transform.Rotate(Vector3.up, 90);
@@ -336,18 +382,28 @@ public class BuildingBlocks : MonoBehaviour
             _wallsAndFloors.Add(corner,0);
         }
 
+        int randomFirst;
+        int randomSecond;
         //FRONT & BACK WALLS
         for (int i = 1; i <= length - 2; i++)
         {
-            int randomFront = Random.Range(0, groundWalls.Count);
-            int randomBack = Random.Range(0, groundWalls.Count);
-            GameObject frontWall = Instantiate(groundWalls[randomFront], transform);
+            if (_selectedWallGround == null)
+            {
+                randomFirst = Random.Range(0, groundWalls.Count);
+                randomSecond = Random.Range(0, groundWalls.Count);
+            }
+            else
+            {
+                randomFirst = groundWalls.IndexOf(_selectedWallGround);
+                randomSecond = groundWalls.IndexOf(_selectedWallGround);
+            }
+            GameObject frontWall = Instantiate(groundWalls[randomFirst], transform);
             frontWall.name = $"Front{i}";
             frontWall.transform.position = new Vector3(_corners[0].x + 5 * i, _corners[0].y, _corners[0].z);
             _children.Add(frontWall);
             _wallsAndFloors.Add(frontWall,0);
 
-            GameObject backWall = Instantiate(groundWalls[randomBack], transform);
+            GameObject backWall = Instantiate(groundWalls[randomSecond], transform);
             backWall.name = $"Back{i}";
             backWall.transform.position = new Vector3(_corners[2].x - 5 * i, _corners[0].y, _corners[2].z);
             backWall.transform.Rotate(Vector3.up, 180);
@@ -358,20 +414,27 @@ public class BuildingBlocks : MonoBehaviour
         //SIDE WALLS
         for (int i = 1; i <= width - 2; i++)
         {
-            int randomRight = Random.Range(0, groundWalls.Count);
-            int randomLeft = Random.Range(0, groundWalls.Count);
-            GameObject rightWall = Instantiate(groundWalls[randomRight], transform);
+            if (_selectedWallGround == null)
+            {
+                randomFirst = Random.Range(0, groundWalls.Count);
+                randomSecond = Random.Range(0, groundWalls.Count);
+            }
+            else
+            {
+                randomFirst = groundWalls.IndexOf(_selectedWallGround);
+                randomSecond = groundWalls.IndexOf(_selectedWallGround);
+            }
+            GameObject rightWall = Instantiate(groundWalls[randomFirst], transform);
             rightWall.name = $"Right{i}";
             rightWall.transform.position = new Vector3(_corners[1].x, _corners[0].y, _corners[1].z + 5 * i);
             rightWall.transform.Rotate(Vector3.up, -90);
             _children.Add(rightWall);
 
-            GameObject leftWall = Instantiate(groundWalls[randomLeft], transform);
+            GameObject leftWall = Instantiate(groundWalls[randomSecond], transform);
             leftWall.name = $"Left{i}";
             leftWall.transform.position = new Vector3(_corners[0].x, _corners[0].y, _corners[0].z + 5 * i);
             leftWall.transform.Rotate(Vector3.up, 90);
             _children.Add(leftWall);
-            
             _wallsAndFloors.Add(rightWall,0);
             _wallsAndFloors.Add(leftWall,0);
         }
